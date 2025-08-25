@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command View - Design System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette */
+            --primary-50: #f0f9ff;
+            --primary-100: #e0f2fe;
+            --primary-200: #bae6fd;
+            --primary-300: #7dd3fc;
+            --primary-400: #38bdf8;
+            --primary-500: #0ea5e9;
+            --primary-600: #0284c7;
+            --primary-700: #0369a1;
+            --primary-800: #075985;
+            --primary-900: #0c4a6e;
+
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+
+            --success-50: #f0fdf4;
+            --success-500: #22c55e;
+            --success-600: #16a34a;
+
+            --warning-50: #fffbeb;
+            --warning-500: #f59e0b;
+            --warning-600: #d97706;
+
+            --error-50: #fef2f2;
+            --error-500: #ef4444;
+            --error-600: #dc2626;
+
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--gray-50);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: var(--space-6) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-600);
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: var(--space-6);
+        }
+
+        .nav-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-600);
+        }
+
+        /* Main Content */
+        .main {
+            padding: var(--space-12) 0;
+        }
+
+        .section {
+            margin-bottom: var(--space-16);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--space-8);
+            color: var(--gray-900);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: var(--space-8);
+        }
+
+        /* Typography */
+        .typography-grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+
+        .type-example {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .type-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-2);
+        }
+
+        .h1 { font-size: 3rem; font-weight: 700; line-height: 1.2; }
+        .h2 { font-size: 2.25rem; font-weight: 600; line-height: 1.3; }
+        .h3 { font-size: 1.875rem; font-weight: 600; line-height: 1.4; }
+        .h4 { font-size: 1.5rem; font-weight: 600; line-height: 1.4; }
+        .h5 { font-size: 1.25rem; font-weight: 600; line-height: 1.5; }
+        .h6 { font-size: 1.125rem; font-weight: 600; line-height: 1.5; }
+        .body-lg { font-size: 1.125rem; line-height: 1.7; }
+        .body { font-size: 1rem; line-height: 1.6; }
+        .body-sm { font-size: 0.875rem; line-height: 1.5; }
+        .caption { font-size: 0.75rem; line-height: 1.4; color: var(--gray-500); }
+        .mono { font-family: var(--font-mono); }
+
+        /* Colors */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .color-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+
+        .color-swatch {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .color-info {
+            padding: var(--space-4);
+        }
+
+        .color-name {
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+
+        .color-value {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* Buttons */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+            gap: var(--space-2);
+        }
+
+        .btn-primary {
+            background: var(--primary-600);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-700);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--gray-600);
+        }
+
+        .btn-ghost:hover {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .btn-sm { padding: var(--space-2) var(--space-3); font-size: 0.75rem; }
+        .btn-lg { padding: var(--space-4) var(--space-6); font-size: 1rem; }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .card-subtitle {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .card-body {
+            padding: var(--space-6);
+        }
+
+        .card-footer {
+            padding: var(--space-4) var(--space-6);
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        /* Status Badges */
+        .badge-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-success {
+            background: var(--success-50);
+            color: var(--success-600);
+        }
+
+        .badge-warning {
+            background: var(--warning-50);
+            color: var(--warning-600);
+        }
+
+        .badge-error {
+            background: var(--error-50);
+            color: var(--error-600);
+        }
+
+        .badge-info {
+            background: var(--primary-50);
+            color: var(--primary-600);
+        }
+
+        /* Form Elements */
+        .form-grid {
+            display: grid;
+            gap: var(--space-6);
+            max-width: 500px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--gray-700);
+            font-size: 0.875rem;
+        }
+
+        .form-input {
+            padding: var(--space-3) var(--space-4);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px var(--primary-100);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Navigation Components */
+        .nav-component {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: var(--space-4) var(--space-6);
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .nav-item:last-child {
+            border-bottom: none;
+        }
+
+        .nav-item:hover {
+            background: var(--gray-50);
+            color: var(--primary-600);
+        }
+
+        .nav-item.active {
+            background: var(--primary-50);
+            color: var(--primary-600);
+            border-right: 3px solid var(--primary-600);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: var(--space-3);
+            opacity: 0.7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-3);
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+
+            .nav {
+                gap: var(--space-4);
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .color-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        .mb-4 { margin-bottom: var(--space-4); }
+        .mb-6 { margin-bottom: var(--space-6); }
+        .mb-8 { margin-bottom: var(--space-8); }
+        .p-4 { padding: var(--space-4); }
+        .p-6 { padding: var(--space-6); }
+        .rounded { border-radius: var(--radius-md); }
+        .shadow { box-shadow: var(--shadow-md); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Command View</a>
+                <nav class="nav">
+                    <a href="#typography" class="nav-link">Typography</a>
+                    <a href="#colors" class="nav-link">Colors</a>
+                    <a href="#components" class="nav-link">Components</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="section text-center">
+                <h1 class="h1 mb-6">Command View Design System</h1>
+                <p class="body-lg mb-8">A comprehensive design system for tracking teams, projects, and organizational goals. Built with a mobile-first approach, combining the best of Notion and Linear.</p>
+                <div class="button-grid" style="max-width: 400px; margin: 0 auto;">
+                    <button class="btn btn-primary btn-lg">Get Started</button>
+                    <button class="btn btn-secondary btn-lg">View Documentation</button>
+                </div>
+            </section>
+
+            <!-- Typography -->
+            <section id="typography" class="section">
+                <h2 class="section-title">Typography</h2>
+                <p class="section-subtitle">Our type system uses Inter for UI and JetBrains Mono for code.</p>
+                
+                <div class="typography-grid">
+                    <div class="type-example">
+                        <div class="type-label">Heading 1</div>
+                        <div class="h1">The quick brown fox jumps over the lazy dog</div>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">Heading 2</div>
+                        <div class="h2">The quick brown fox jumps over the lazy dog</div>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">Heading 3</div>
+                        <div class="h3">The quick brown fox jumps over the lazy dog</div>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">Heading 4</div>
+                        <div class="h4">The quick brown fox jumps over the lazy dog</div>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">Body Large</div>
+                        <div class="body-lg">The quick brown fox jumps over the lazy dog. This is body large text that provides excellent readability for longer content.</div>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">Body</div>
+                        <div class="body">The quick brown fox jumps over the lazy dog. This is standard body text that works well for most content.</div>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">Body Small</div>
+                        <div class="body-sm">The quick brown fox jumps over the lazy dog. This is smaller text for secondary information.</div>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">Monospace</div>
+                        <div class="body mono">const project = { name: "Command View", status: "active" };</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors -->
+            <section id="colors" class="section">
+                <h2 class="section-title">Color Palette</h2>
+                <p class="section-subtitle">A carefully crafted color system that ensures accessibility and visual hierarchy.</p>
+                
+                <div class="color-grid">
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: var(--primary-600);">Primary</div>
+                        <div class="color-info">
+                            <div class="color-name">Primary 600</div>
+                            <div class="color-value">#0ea5e9</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: var(--gray-900);">Gray 900</div>
+                        <div class="color-info">
+                            <div class="color-name">Gray 900</div>
+                            <div class="color-value">#0f172a</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: var(--gray-700);">Gray 700</div>
+                        <div class="color-info">
+                            <div class="color-name">Gray 700</div>
+                            <div class="color-value">#334155</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: var(--gray-500);">Gray 500</div>
+                        <div class="color-info">
+                            <div class="color-name">Gray 500</div>
+                            <div class="color-value">#64748b</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: var(--success-500);">Success</div>
+                        <div class="color-info">
+                            <div class="color-name">Success 500</div>
+                            <div class="color-value">#22c55e</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: var(--warning-500);">Warning</div>
+                        <div class="color-info">
+                            <div class="color-name">Warning 500</div>
+                            <div class="color-value">#f59e0b</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: var(--error-500);">Error</div>
+                        <div class="color-info">
+                            <div class="color-name">Error 500</div>
+                            <div class="color-value">#ef4444</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: var(--gray-100); color: var(--gray-900);">Gray 100</div>
+                        <div class="color-info">
+                            <div class="color-name">Gray 100</div>
+                            <div class="color-value">#f1f5f9</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Components -->
+            <section id="components" class="section">
+                <h2 class="section-title">Components</h2>
+                <p class="section-subtitle">Reusable UI components built for consistency and efficiency.</p>
+
+                <!-- Buttons -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Buttons</h3>
+                    <div class="button-grid">
+                        <button class="btn btn-primary">Primary Button</button>
+                        <button class="btn btn-secondary">Secondary Button</button>
+                        <button class="btn btn-ghost">Ghost Button</button>
+                        <button class="btn btn-primary btn-sm">Small Button</button>
+                        <button class="btn btn-primary btn-lg">Large Button</button>
+                    </div>
+                </div>
+
+                <!-- Cards -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Cards</h3>
+                    <div class="card-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Project Overview</div>
+                                <div class="card-subtitle">Q4 2024 Goals</div>
+                            </div>
+                            <div class="card-body">
+                                <p class="body-sm mb-4">Track progress across all teams and measure ROI on key initiatives.</p>
+                                <div class="badge-grid">
+                                    <span class="badge badge-success">On Track</span>
+                                    <span class="badge badge-info">High Priority</span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Team Performance</div>
+                                <div class="card-subtitle">Engineering Team</div>
+                            </div>
+                            <div class="card-body">
+                                <p class="body-sm mb-4">Monitor sprint velocity, code quality metrics, and delivery timelines.</p>
+                                <div class="badge-grid">
+                                    <span class="badge badge-warning">Behind Schedule</span>
+                                    <span class="badge badge-info">Needs Review</span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-secondary btn-sm">View Metrics</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Badges -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Status Badges</h3>
+                    <div class="badge-grid">
+                        <span class="badge badge-success">Completed</span>
+                        <span class="badge badge-warning">In Progress</span>
+                        <span class="badge badge-error">Blocked</span>
+                        <span class="badge badge-info">Review</span>
+                    </div>
+                </div>
+
+                <!-- Form Elements -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Form Elements</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Project Name</label>
+                            <input type="text" class="form-input" placeholder="Enter project name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-input form-textarea" placeholder="Describe your project"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Team</label>
+                            <select class="form-input">
+                                <option>Select a team</option>
+                                <option>Engineering</option>
+                                <option>Design</option>
+                                <option>Marketing</option>
+                                <option>Sales</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Navigation</h3>
+                    <div class="nav-component" style="max-width: 300px;">
+                        <a href="#" class="nav-item active">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                        <a href="#" class="nav-item">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Projects
+                        </a>
+                        <a href="#" class="nav-item">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                            </svg>
+                            Teams
+                        </a>
+                        <a href="#" class="nav-item">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            Analytics
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
