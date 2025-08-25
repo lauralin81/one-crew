@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OneCrew - Modern Design System</title>
+    <link rel="icon" type="image/x-icon" href="images/OneCrew_Favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Albert+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,19 +16,19 @@
         }
 
         :root {
-            /* Modern Color Palette - More Vibrant */
-            --primary-50: #f0f7ff;
-            --primary-100: #e0effe;
-            --primary-200: #bae0fd;
-            --primary-300: #7cc5fb;
-            --primary-400: #36a3f7;
-            --primary-500: #0d8aed;
-            --primary-600: #006edb;
-            --primary-700: #0057b3;
-            --primary-800: #004a94;
-            --primary-900: #003d7a;
+            /* Modern Color Palette - Matching OneCrew Logo */
+            --primary-50: #eff6ff;
+            --primary-100: #dbeafe;
+            --primary-200: #bfdbfe;
+            --primary-300: #93c5fd;
+            --primary-400: #60a5fa;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;  /* OneCrew Logo Blue */
+            --primary-700: #1d4ed8;
+            --primary-800: #1e40af;
+            --primary-900: #1e3a8a;
 
-            /* Vibrant Accent Colors */
+            /* Vibrant Accent Colors - Complementary to OneCrew Blue */
             --accent-purple: #8b5cf6;
             --accent-purple-light: #a78bfa;
             --accent-teal: #06b6d4;
@@ -36,6 +37,8 @@
             --accent-orange-light: #fb923c;
             --accent-pink: #ec4899;
             --accent-pink-light: #f472b6;
+            --accent-emerald: #10b981;
+            --accent-emerald-light: #34d399;
 
             /* Modern Grays with Warm Undertones */
             --gray-50: #fafafa;
@@ -62,7 +65,7 @@
             --error-500: #ef4444;
             --error-600: #dc2626;
 
-            /* Typography - More Distinctive */
+            /* Typography - Updated Font Stack */
             --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-body: 'Albert Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -134,11 +137,22 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
             font-family: var(--font-display);
             font-size: 1.75rem;
             font-weight: 800;
             color: white;
-            text-decoration: none;
             letter-spacing: -0.02em;
         }
 
@@ -614,7 +628,10 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">OneCrew</a>
+                <a href="#" class="logo">
+                    <img src="images/OneCrew_Logo_NoIO_Final.png" alt="OneCrew Logo" class="logo-image">
+                    <span class="logo-text">OneCrew</span>
+                </a>
                 <nav class="nav">
                     <a href="#typography" class="nav-link">Typography</a>
                     <a href="#colors" class="nav-link">Colors</a>
@@ -679,7 +696,7 @@
                         <div class="color-swatch" style="background: var(--primary-600);">Primary</div>
                         <div class="color-info">
                             <div class="color-name">Primary 600</div>
-                            <div class="color-value">#006edb</div>
+                            <div class="color-value">#2563eb</div>
                         </div>
                     </div>
                     <div class="color-card">
