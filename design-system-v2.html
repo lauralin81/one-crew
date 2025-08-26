@@ -23,7 +23,7 @@
             --primary-300: #93c5fd;
             --primary-400: #60a5fa;
             --primary-500: #3b82f6;
-            --primary-600: #2563eb;  /* OneCrew Logo Blue */
+            --primary-600: #4B85F7;  /* OneCrew Logo Blue */
             --primary-700: #1d4ed8;
             --primary-800: #1e40af;
             --primary-900: #1e3a8a;
@@ -31,8 +31,8 @@
             /* Vibrant Accent Colors - Complementary to OneCrew Blue */
             --accent-purple: #8b5cf6;
             --accent-purple-light: #a78bfa;
-            --accent-teal: #06b6d4;
-            --accent-teal-light: #22d3ee;
+            --accent-teal: #0891b2;
+            --accent-teal-light: #0ea5e9;
             --accent-orange: #f97316;
             --accent-orange-light: #fb923c;
             --accent-pink: #ec4899;
@@ -102,13 +102,34 @@
             --gradient-primary: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-purple) 100%);
             --gradient-secondary: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-purple) 100%);
             --gradient-accent: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-pink) 100%);
+
+            /* Dark/Light Mode Support */
+            --header-bg: white;
+            --header-text: var(--gray-900);
+            --body-bg: var(--gray-50);
+            --body-text: var(--gray-900);
+            --card-bg: white;
+            --card-border: var(--gray-200);
+        }
+
+        /* Dark Mode Styles */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --header-bg: var(--gray-900);
+                --header-text: white;
+                --body-bg: var(--gray-900);
+                --body-text: var(--gray-50);
+                --card-bg: var(--gray-800);
+                --card-border: var(--gray-700);
+            }
+        }
         }
 
         body {
             font-family: var(--font-body);
             line-height: 1.6;
-            color: var(--gray-900);
-            background: var(--gray-50);
+            color: var(--body-text);
+            background: var(--body-bg);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -119,10 +140,10 @@
             padding: 0 var(--space-4);
         }
 
-        /* Header with Gradient */
+        /* Header with Dark Background */
         .header {
-            background: var(--gradient-primary);
-            color: white;
+            background: var(--header-bg);
+            color: var(--header-text);
             padding: var(--space-6) 0;
             position: sticky;
             top: 0;
@@ -139,7 +160,7 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
+            gap: 0;
             text-decoration: none;
         }
 
@@ -152,7 +173,7 @@
             font-family: var(--font-display);
             font-size: 1.75rem;
             font-weight: 800;
-            color: white;
+            color: var(--header-text);
             letter-spacing: -0.02em;
         }
 
@@ -162,7 +183,7 @@
         }
 
         .nav-link {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--gray-600);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.2s;
@@ -170,7 +191,7 @@
         }
 
         .nav-link:hover {
-            color: white;
+            color: var(--primary-600);
             transform: translateY(-1px);
         }
 
@@ -199,14 +220,15 @@
             font-weight: 400;
         }
 
-        /* Hero Section */
+        /* Hero Section - Option 3: Notion-Style */
         .hero {
             text-align: center;
             padding: var(--space-20) 0;
-            background: var(--gradient-secondary);
-            color: white;
+            background: white;
+            color: var(--gray-900);
             margin: calc(-1 * var(--space-12)) 0 var(--space-16) 0;
             border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+            border: 1px solid var(--gray-200);
         }
 
         .hero h1 {
@@ -234,10 +256,10 @@
         }
 
         .type-example {
-            background: white;
+            background: var(--card-bg);
             padding: var(--space-8);
             border-radius: var(--radius-xl);
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--card-border);
             box-shadow: var(--shadow-md);
         }
 
@@ -271,10 +293,10 @@
         }
 
         .color-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--radius-xl);
             overflow: hidden;
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--card-border);
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
         }
@@ -337,7 +359,7 @@
         }
 
         .btn-primary {
-            background: var(--gradient-primary);
+            background: var(--primary-600);
             color: white;
             box-shadow: var(--shadow-md);
         }
@@ -350,7 +372,7 @@
         .btn-secondary {
             background: white;
             color: var(--gray-700);
-            border: 2px solid var(--gray-300);
+            border: 2px solid var(--gray-200);
         }
 
         .btn-secondary:hover {
@@ -360,7 +382,7 @@
         }
 
         .btn-accent {
-            background: var(--gradient-accent);
+            background: var(--accent-orange);
             color: white;
             box-shadow: var(--shadow-md);
         }
@@ -393,9 +415,9 @@
         }
 
         .card {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--radius-xl);
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--card-border);
             overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-md);
@@ -409,7 +431,7 @@
         .card-header {
             padding: var(--space-8);
             border-bottom: 1px solid var(--gray-200);
-            background: var(--gradient-primary);
+            background: var(--primary-600);
             color: white;
         }
 
@@ -445,12 +467,12 @@
         .badge {
             display: inline-flex;
             align-items: center;
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-lg);
-            font-size: 0.75rem;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-md);
+            font-size: 0.625rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             font-family: var(--font-heading);
         }
 
@@ -526,9 +548,9 @@
 
         /* Navigation Components */
         .nav-component {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--radius-xl);
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--card-border);
             overflow: hidden;
             box-shadow: var(--shadow-md);
         }
@@ -550,15 +572,13 @@
         }
 
         .nav-item:hover {
-            background: var(--gray-50);
+            background: var(--primary-50);
             color: var(--primary-600);
-            transform: translateX(4px);
         }
 
         .nav-item.active {
-            background: var(--gradient-primary);
+            background: var(--primary-600);
             color: white;
-            border-right: 4px solid var(--accent-purple);
         }
 
         .nav-icon {
@@ -566,6 +586,1138 @@
             height: 24px;
             margin-right: var(--space-4);
             opacity: 0.8;
+        }
+
+        /* Tables */
+        .table-container {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-body);
+        }
+
+        .table th {
+            background: var(--gray-50);
+            padding: var(--space-4) var(--space-6);
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--gray-900);
+            border-bottom: 1px solid var(--gray-200);
+            font-family: var(--font-heading);
+        }
+
+        .table td {
+            padding: var(--space-4) var(--space-6);
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 0.875rem;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+
+        .table tr:hover {
+            background: var(--gray-50);
+        }
+
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .ticket-id {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--primary-600);
+        }
+
+        .ticket-title {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .assignee {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .due-date {
+            font-family: var(--font-body);
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        /* Kanban Board */
+        .kanban-board {
+            display: flex;
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+            overflow-x: auto;
+            padding-bottom: var(--space-4);
+        }
+
+        .kanban-column {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .kanban-column {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .kanban-header {
+            padding: var(--space-6);
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kanban-title {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin: 0;
+        }
+
+        .kanban-count {
+            background: var(--gray-200);
+            color: var(--gray-700);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-lg);
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-heading);
+        }
+
+        .kanban-cards {
+            padding: var(--space-4);
+            min-height: 200px;
+        }
+
+        .kanban-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-3);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .kanban-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-300);
+        }
+
+        .kanban-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .kanban-card.completed {
+            opacity: 0.7;
+            background: var(--gray-50);
+        }
+
+        .kanban-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+        }
+
+        .kanban-card-id {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            color: var(--primary-600);
+            font-weight: 600;
+        }
+
+        .kanban-card-title {
+            font-family: var(--font-heading);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin: 0 0 var(--space-2) 0;
+            line-height: 1.4;
+        }
+
+        .kanban-card-desc {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin: 0 0 var(--space-3) 0;
+            line-height: 1.4;
+        }
+
+        .kanban-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+        }
+
+        .kanban-card-footer .assignee {
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .kanban-card-footer .due-date {
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        /* Project Management */
+        .project-container {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-header {
+            padding: var(--space-6);
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 0 0 var(--space-2) 0;
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-3);
+        }
+
+        .project-timeline {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .project-count {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .project-description {
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            line-height: 1.5;
+            margin: 0;
+            max-width: 500px;
+        }
+
+        .project-overview {
+            text-align: right;
+        }
+
+        .project-status-row {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            justify-content: flex-end;
+        }
+
+        .project-status-badge {
+            background: var(--primary-600);
+            color: white;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-lg);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: var(--font-heading);
+        }
+
+        .project-track-status {
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-lg);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: var(--font-heading);
+        }
+
+        .project-track-status.off-track {
+            background: var(--error-50);
+            color: var(--error-600);
+            border: 1px solid var(--error-500);
+        }
+
+        .project-track-status.on-track {
+            background: var(--success-50);
+            color: var(--success-600);
+            border: 1px solid var(--success-500);
+        }
+
+        .project-track-status.behind-schedule {
+            background: var(--warning-50);
+            color: var(--warning-600);
+            border: 1px solid var(--warning-500);
+        }
+
+        .project-progress {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-2);
+        }
+
+        .progress-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .progress-percentage {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--primary-600);
+            font-family: var(--font-heading);
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-500);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: 2px;
+            align-items: center;
+        }
+
+        .progress-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            transition: all 0.2s ease;
+        }
+
+        .progress-dot.completed {
+            background: var(--success-500);
+            transform: scale(1.1);
+        }
+
+        .progress-dot.partial {
+            background: var(--primary-500);
+            transform: scale(1.05);
+        }
+
+        .project-table-container {
+            overflow-x: auto;
+        }
+
+        .project-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-body);
+        }
+
+        .project-table th {
+            background: var(--gray-50);
+            padding: var(--space-4) var(--space-6);
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            border-bottom: 1px solid var(--gray-200);
+            font-family: var(--font-heading);
+            white-space: nowrap;
+        }
+
+        .project-table td {
+            padding: var(--space-4) var(--space-6);
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            vertical-align: middle;
+        }
+
+        .project-table tr:hover {
+            background: var(--gray-50);
+        }
+
+        .project-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .task-name {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .task-indent-0 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .task-indent-1 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding-left: var(--space-8);
+        }
+
+        .expand-icon {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: color 0.2s ease;
+            width: 16px;
+            text-align: center;
+        }
+
+        .expand-icon:hover {
+            color: var(--primary-600);
+        }
+
+        .expand-icon.expanded {
+            color: var(--primary-600);
+        }
+
+        .task-icon {
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .task-action-btn {
+            background: var(--primary-600);
+            color: white;
+            border: none;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-md);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: var(--space-3);
+            transition: all 0.2s ease;
+        }
+
+        .task-action-btn:hover {
+            background: var(--primary-700);
+            transform: translateY(-1px);
+        }
+
+        .resource {
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .timeline {
+            font-family: var(--font-mono);
+            color: var(--gray-600);
+            font-size: 0.75rem;
+        }
+
+        .duration {
+            font-family: var(--font-mono);
+            color: var(--gray-600);
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        .progress-cell {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .progress-cell .progress-text {
+            font-weight: 500;
+            color: var(--gray-600);
+            font-size: 0.75rem;
+            min-width: 35px;
+            text-align: right;
+            position: static;
+        }
+
+        .progress-bar-small {
+            width: 50px;
+            height: 3px;
+            background: var(--gray-100);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .milestone-row {
+            background: var(--primary-25);
+        }
+
+        .milestone-row .task-name {
+            font-weight: 700;
+            color: var(--primary-900);
+        }
+
+        .phase-row {
+            background: white;
+        }
+
+        .phase-row .task-name {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .milestone-icon {
+            font-size: 1.25rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .phase-icon {
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sub-task {
+            background: var(--gray-50);
+        }
+
+        .sub-task .task-name {
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .task-icon {
+            font-size: 0.875rem;
+            width: 18px;
+            text-align: center;
+        }
+
+        /* Roadmap Visualization */
+        .roadmap-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            margin-top: var(--space-6);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Project Header */
+        .roadmap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .roadmap-project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 0 0 var(--space-2) 0;
+        }
+
+        .roadmap-project-meta {
+            display: flex;
+            gap: var(--space-4);
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .roadmap-progress-overview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .roadmap-progress-circle {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-bg {
+            fill: none;
+            stroke: var(--gray-200);
+        }
+
+        .progress-ring-fill {
+            fill: none;
+            stroke: var(--primary-500);
+            stroke-linecap: round;
+            stroke-width: 4;
+            transition: stroke-dashoffset 0.6s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .progress-label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Timeline */
+        .journey-path {
+            padding: var(--space-8) 0;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .timeline-progress {
+            height: 100%;
+            background: var(--success-500);
+            border-radius: 2px;
+            transition: width 1s ease-out;
+        }
+
+        .timeline-items {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 2;
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            border: 3px solid var(--gray-200);
+            transition: all 0.3s ease;
+            margin-bottom: var(--space-4);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .timeline-item.completed .timeline-marker {
+            background: white;
+            border-color: var(--success-500);
+            color: var(--success-700);
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .timeline-item.in-progress .timeline-marker {
+            background: white;
+            border-color: var(--primary-600);
+            color: var(--primary-700);
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .timeline-item.behind .timeline-marker {
+            background: white;
+            border-color: var(--warning-600);
+            color: var(--warning-700);
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .timeline-item.overdue .timeline-marker {
+            background: white;
+            border-color: var(--error-600);
+            color: var(--error-700);
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .timeline-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .timeline-label {
+            font-weight: 600;
+            color: var(--gray-900);
+            font-size: 0.75rem;
+        }
+
+        .timeline-date {
+            font-size: 0.625rem;
+            color: var(--gray-600);
+        }
+
+        .timeline-progress-text {
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            background: var(--gray-100);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+        }
+
+        .timeline-item.completed .timeline-progress-text {
+            background: var(--success-100);
+            color: var(--success-700);
+            border-color: var(--success-300);
+        }
+
+        .timeline-item.behind .timeline-progress-text {
+            background: var(--warning-100);
+            color: var(--warning-700);
+            border-color: var(--warning-300);
+        }
+
+        .timeline-item.overdue .timeline-progress-text {
+            background: var(--error-100);
+            color: var(--error-700);
+            border-color: var(--error-300);
+        }
+
+        /* Tooltip styles */
+        .timeline-marker[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gray-900);
+            color: white;
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            font-size: 0.75rem;
+            white-space: nowrap;
+            z-index: 10;
+            margin-bottom: var(--space-2);
+        }
+
+        .timeline-marker[title]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: var(--gray-900);
+            z-index: 10;
+            margin-bottom: -4px;
+        }
+
+        /* Simple Road Trip Map */
+        .map-roadmap-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            margin-top: var(--space-6);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .map-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .map-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .map-legend {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+
+        .legend-icon {
+            font-size: 1rem;
+        }
+
+        .map-journey {
+            padding: var(--space-8);
+        }
+
+        .roadtrip-map {
+            position: relative;
+            height: 120px;
+            background: #f8fafc;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .route-path {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .route-line {
+            stroke-dasharray: 6, 6;
+            stroke-dashoffset: 1000;
+            animation: drawLine 1.5s ease-out forwards;
+        }
+
+        .route-progress {
+            stroke-dasharray: 6, 6;
+            stroke-dashoffset: 1000;
+            animation: drawProgress 1.5s ease-out 0.5s forwards;
+            filter: drop-shadow(0 0 2px rgba(34, 197, 94, 0.3));
+        }
+
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes drawProgress {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .map-stop {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .stop-marker {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-1);
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        .stop-marker.complete {
+            filter: drop-shadow(0 1px 3px rgba(34, 197, 94, 0.3));
+        }
+
+        .stop-marker.behind {
+            filter: drop-shadow(0 1px 3px rgba(245, 158, 11, 0.3));
+        }
+
+        .stop-marker.overdue {
+            filter: drop-shadow(0 1px 3px rgba(239, 68, 68, 0.3));
+        }
+
+        .stop-marker.in-progress {
+            filter: drop-shadow(0 1px 3px rgba(59, 130, 246, 0.3));
+        }
+
+        .stop-marker.not-started {
+            opacity: 0.5;
+        }
+
+        .stop-label {
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-md);
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: var(--font-heading);
+        }
+
+        .status-completed {
+            background: var(--success-50);
+            color: var(--success-600);
+            border: 1px solid var(--success-500);
+        }
+
+        .status-ontime {
+            background: var(--primary-50);
+            color: var(--primary-600);
+            border: 1px solid var(--primary-500);
+        }
+
+        .status-overdue {
+            background: var(--error-50);
+            color: var(--error-600);
+            border: 1px solid var(--error-500);
+        }
+
+        .status-notstarted {
+            background: var(--gray-50);
+            color: var(--gray-600);
+            border: 1px solid var(--gray-400);
+        }
+
+        .status-behind {
+            background: var(--warning-50);
+            color: var(--warning-600);
+            border: 1px solid var(--warning-500);
+        }
+
+        /* Gantt Chart */
+        .gantt-container {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .gantt-header {
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .gantt-timeline-header {
+            display: flex;
+            align-items: center;
+            padding: var(--space-4) var(--space-6);
+        }
+
+        .gantt-task-column {
+            width: 250px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            font-family: var(--font-heading);
+        }
+
+        .gantt-timeline-months {
+            display: flex;
+            flex: 1;
+            gap: 0;
+        }
+
+        .gantt-month {
+            flex: 1;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            font-family: var(--font-heading);
+            padding: var(--space-2);
+            border-left: 1px solid var(--gray-200);
+        }
+
+        .gantt-month:first-child {
+            border-left: none;
+        }
+
+        .gantt-body {
+            padding: 0;
+        }
+
+        .gantt-row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--gray-100);
+            min-height: 40px;
+        }
+
+        .gantt-row:last-child {
+            border-bottom: none;
+        }
+
+        .gantt-row:hover {
+            background: var(--gray-50);
+        }
+
+        .gantt-row.sub-task {
+            background: var(--gray-25);
+        }
+
+        .gantt-row.milestone {
+            background: var(--primary-25);
+        }
+
+        .gantt-task-name {
+            width: 250px;
+            padding: var(--space-3) var(--space-6);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            font-family: var(--font-heading);
+        }
+
+        .gantt-row.sub-task .gantt-task-name {
+            padding-left: var(--space-12);
+            font-weight: 400;
+            color: var(--gray-600);
+        }
+
+        .gantt-row.milestone .gantt-task-name {
+            font-weight: 700;
+            color: var(--primary-700);
+        }
+
+        .gantt-timeline-bar {
+            flex: 1;
+            position: relative;
+            height: 40px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--gray-100) 0px,
+                var(--gray-100) 1px,
+                transparent 1px,
+                transparent calc(100% / 8)
+            );
+        }
+
+        .gantt-bar {
+            position: absolute;
+            height: 24px;
+            top: 8px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            padding: 0 var(--space-2);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            font-family: var(--font-heading);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .gantt-bar:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .gantt-bar.completed {
+            background: var(--success-600);
+        }
+
+        .gantt-bar.in-progress {
+            background: var(--primary-600);
+        }
+
+        .gantt-bar.behind {
+            background: var(--warning-600);
+        }
+
+        .gantt-bar.overdue {
+            background: var(--error-600);
+        }
+
+        .gantt-bar.not-started {
+            background: var(--gray-500);
+        }
+
+        .gantt-bar-label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .gantt-milestone {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .gantt-milestone-icon {
+            font-size: 0.75rem;
         }
 
         /* Mobile Responsive */
@@ -605,6 +1757,16 @@
 
             .card-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .kanban-board {
+                flex-direction: column;
+                overflow-x: visible;
+            }
+
+            .kanban-column {
+                min-width: auto;
+                width: 100%;
             }
         }
 
@@ -649,7 +1811,7 @@
                 <p>A modern, distinctive design system for tracking teams, projects, and organizational goals. Built with cutting-edge typography and vibrant colors.</p>
                 <div class="button-grid" style="max-width: 500px; margin: 0 auto;">
                     <button class="btn btn-primary btn-lg">Get Started</button>
-                    <button class="btn btn-ghost btn-lg" style="color: white; border-color: rgba(255,255,255,0.3);">View Documentation</button>
+                    <button class="btn btn-secondary btn-lg">View Documentation</button>
                 </div>
             </section>
 
@@ -696,7 +1858,7 @@
                         <div class="color-swatch" style="background: var(--primary-600);">Primary</div>
                         <div class="color-info">
                             <div class="color-name">Primary 600</div>
-                            <div class="color-value">#2563eb</div>
+                            <div class="color-value">#4B85F7</div>
                         </div>
                     </div>
                     <div class="color-card">
@@ -842,6 +2004,783 @@
                                 <option>Marketing</option>
                                 <option>Sales</option>
                             </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tables -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Tables</h3>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Ticket</th>
+                                    <th>Title</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th>Assignee</th>
+                                    <th>Due Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ticket-id">#1234</td>
+                                    <td class="ticket-title">Implement user authentication flow</td>
+                                    <td><span class="badge badge-success">Completed</span></td>
+                                    <td><span class="badge badge-error">High</span></td>
+                                    <td class="assignee">Sarah Chen</td>
+                                    <td class="due-date">Dec 15, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="ticket-id">#1235</td>
+                                    <td class="ticket-title">Design mobile navigation menu</td>
+                                    <td><span class="badge badge-warning">In Progress</span></td>
+                                    <td><span class="badge badge-warning">Medium</span></td>
+                                    <td class="assignee">Mike Johnson</td>
+                                    <td class="due-date">Dec 20, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="ticket-id">#1236</td>
+                                    <td class="ticket-title">Fix payment processing bug</td>
+                                    <td><span class="badge badge-error">Blocked</span></td>
+                                    <td><span class="badge badge-error">High</span></td>
+                                    <td class="assignee">Alex Rivera</td>
+                                    <td class="due-date">Dec 12, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="ticket-id">#1237</td>
+                                    <td class="ticket-title">Update API documentation</td>
+                                    <td><span class="badge badge-info">Review</span></td>
+                                    <td><span class="badge badge-info">Low</span></td>
+                                    <td class="assignee">Emma Wilson</td>
+                                    <td class="due-date">Dec 25, 2024</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Kanban Board -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Kanban Board</h3>
+                    <div class="kanban-board">
+                        <div class="kanban-column">
+                            <div class="kanban-header">
+                                <h4 class="kanban-title">To Do</h4>
+                                <span class="kanban-count">3</span>
+                            </div>
+                            <div class="kanban-cards">
+                                <div class="kanban-card">
+                                    <div class="kanban-card-header">
+                                        <span class="badge badge-info">Low</span>
+                                        <span class="kanban-card-id">#1238</span>
+                                    </div>
+                                    <h5 class="kanban-card-title">Update user documentation</h5>
+                                    <p class="kanban-card-desc">Review and update onboarding docs for new features</p>
+                                    <div class="kanban-card-footer">
+                                        <span class="assignee">Emma Wilson</span>
+                                        <span class="due-date">Dec 28</span>
+                                    </div>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="kanban-card-header">
+                                        <span class="badge badge-warning">Medium</span>
+                                        <span class="kanban-card-id">#1239</span>
+                                    </div>
+                                    <h5 class="kanban-card-title">Design mobile app icons</h5>
+                                    <p class="kanban-card-desc">Create new icon set for mobile navigation</p>
+                                    <div class="kanban-card-footer">
+                                        <span class="assignee">Mike Johnson</span>
+                                        <span class="due-date">Dec 30</span>
+                                    </div>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="kanban-card-header">
+                                        <span class="badge badge-error">High</span>
+                                        <span class="kanban-card-id">#1240</span>
+                                    </div>
+                                    <h5 class="kanban-card-title">Fix login bug</h5>
+                                    <p class="kanban-card-desc">Users unable to login with Google OAuth</p>
+                                    <div class="kanban-card-footer">
+                                        <span class="assignee">Alex Rivera</span>
+                                        <span class="due-date">Dec 18</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kanban-column">
+                            <div class="kanban-header">
+                                <h4 class="kanban-title">In Progress</h4>
+                                <span class="kanban-count">2</span>
+                            </div>
+                            <div class="kanban-cards">
+                                <div class="kanban-card">
+                                    <div class="kanban-card-header">
+                                        <span class="badge badge-error">High</span>
+                                        <span class="kanban-card-id">#1236</span>
+                                    </div>
+                                    <h5 class="kanban-card-title">Fix payment processing bug</h5>
+                                    <p class="kanban-card-desc">Investigate failed transactions in production</p>
+                                    <div class="kanban-card-footer">
+                                        <span class="assignee">Sarah Chen</span>
+                                        <span class="due-date">Dec 12</span>
+                                    </div>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="kanban-card-header">
+                                        <span class="badge badge-warning">Medium</span>
+                                        <span class="kanban-card-id">#1235</span>
+                                    </div>
+                                    <h5 class="kanban-card-title">Design mobile navigation menu</h5>
+                                    <p class="kanban-card-desc">Create responsive navigation for mobile app</p>
+                                    <div class="kanban-card-footer">
+                                        <span class="assignee">Mike Johnson</span>
+                                        <span class="due-date">Dec 20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kanban-column">
+                            <div class="kanban-header">
+                                <h4 class="kanban-title">Review</h4>
+                                <span class="kanban-count">1</span>
+                            </div>
+                            <div class="kanban-cards">
+                                <div class="kanban-card">
+                                    <div class="kanban-card-header">
+                                        <span class="badge badge-info">Low</span>
+                                        <span class="kanban-card-id">#1237</span>
+                                    </div>
+                                    <h5 class="kanban-card-title">Update API documentation</h5>
+                                    <p class="kanban-card-desc">Add new endpoints to developer docs</p>
+                                    <div class="kanban-card-footer">
+                                        <span class="assignee">Emma Wilson</span>
+                                        <span class="due-date">Dec 25</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kanban-column">
+                            <div class="kanban-header">
+                                <h4 class="kanban-title">Done</h4>
+                                <span class="kanban-count">1</span>
+                            </div>
+                            <div class="kanban-cards">
+                                <div class="kanban-card completed">
+                                    <div class="kanban-card-header">
+                                        <span class="badge badge-success">Completed</span>
+                                        <span class="kanban-card-id">#1234</span>
+                                    </div>
+                                    <h5 class="kanban-card-title">Implement user authentication flow</h5>
+                                    <p class="kanban-card-desc">OAuth integration with Google and GitHub</p>
+                                    <div class="kanban-card-footer">
+                                        <span class="assignee">Sarah Chen</span>
+                                        <span class="due-date">Dec 15</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Management -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Project Management</h3>
+                    <div class="project-container">
+                        <div class="project-header">
+                            <div class="project-info">
+                                <h4 class="project-title">🚀 OneCrew Mobile App Launch</h4>
+                                <div class="project-meta">
+                                    <span class="project-timeline">Mar 1, 2024 → Dec 15, 2024</span>
+                                    <span class="project-count">8 phases</span>
+                                </div>
+                                <p class="project-description">Building the OneCrew mobile app from concept to launch. Our journey from ideation to market success with key milestones along the way.</p>
+                            </div>
+                            <div class="project-overview">
+                                <div class="project-status-row">
+                                    <span class="project-status-badge">In Progress</span>
+                                    <span class="project-track-status on-track">On Track</span>
+                                </div>
+                                <div class="project-progress">
+                                    <span class="progress-label">Launch Journey</span>
+                                    <span class="progress-percentage">58.00%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 58%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-table-container">
+                            <table class="project-table">
+                                <thead>
+                                    <tr>
+                                        <th class="task-name-header">Phase Name</th>
+                                        <th class="resource-header">Team</th>
+                                        <th class="timeline-header">Timeline</th>
+                                        <th class="progress-header">Progress</th>
+                                        <th class="status-header">Status</th>
+                                        <th class="duration-header">Days</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Milestone: Project Kickoff -->
+                                    <tr class="milestone-row">
+                                        <td class="task-name">
+                                            <div class="task-indent-0">
+                                                <span class="milestone-icon">🚀</span>
+                                                Project Kickoff
+                                            </div>
+                                        </td>
+                                        <td class="resource">Leadership</td>
+                                        <td class="timeline">Mar 1, 2024 → Mar 1, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">100%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-completed">✅ Complete</span>
+                                        </td>
+                                        <td class="duration">1 day</td>
+                                    </tr>
+                                    
+                                    <!-- Phase: Discovery & Research -->
+                                    <tr class="phase-row">
+                                        <td class="task-name">
+                                            <div class="task-indent-0">
+                                                <span class="phase-icon">🔍</span>
+                                                Discovery & Research
+                                            </div>
+                                        </td>
+                                        <td class="resource">Product Team</td>
+                                        <td class="timeline">Mar 5, 2024 → Apr 15, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">100%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-completed">✅ Complete</span>
+                                        </td>
+                                        <td class="duration">42 days</td>
+                                    </tr>
+                                    
+                                    <!-- Phase: Design & Prototyping -->
+                                    <tr class="phase-row">
+                                        <td class="task-name">
+                                            <div class="task-indent-0">
+                                                <span class="phase-icon">🎨</span>
+                                                Design & Prototyping
+                                            </div>
+                                        </td>
+                                        <td class="resource">Design Team</td>
+                                        <td class="timeline">Apr 20, 2024 → Jun 10, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">100%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-completed">✅ Complete</span>
+                                        </td>
+                                        <td class="duration">52 days</td>
+                                    </tr>
+                                    
+                                    <!-- Milestone: MVP Ready -->
+                                    <tr class="milestone-row">
+                                        <td class="task-name">
+                                            <div class="task-indent-0">
+                                                <span class="milestone-icon">🎯</span>
+                                                MVP Ready for Testing
+                                            </div>
+                                        </td>
+                                        <td class="resource">Dev Team</td>
+                                        <td class="timeline">Jul 15, 2024 → Jul 15, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">100%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-completed">🎯 Complete</span>
+                                        </td>
+                                        <td class="duration">1 day</td>
+                                    </tr>
+                                    
+                                    <!-- Phase: Development -->
+                                    <tr class="phase-row">
+                                        <td class="task-name">
+                                            <div class="task-indent-0">
+                                                <span class="expand-icon expanded">▼</span>
+                                                <span class="phase-icon">💻</span>
+                                                Development
+                                            </div>
+                                        </td>
+                                        <td class="resource">Engineering</td>
+                                        <td class="timeline">Jun 15, 2024 → Sep 30, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">75%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 75%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-ontime">On Time</span>
+                                        </td>
+                                        <td class="duration">108 days</td>
+                                    </tr>
+                                    
+                                    <!-- Sub-task: Backend API Development -->
+                                    <tr class="sub-task">
+                                        <td class="task-name">
+                                            <div class="task-indent-1">
+                                                <span class="task-icon">🔧</span>
+                                                Backend API Development
+                                            </div>
+                                        </td>
+                                        <td class="resource">Sarah Chen</td>
+                                        <td class="timeline">Jun 15, 2024 → Aug 15, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">90%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 90%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-ontime">On Time</span>
+                                        </td>
+                                        <td class="duration">62 days</td>
+                                    </tr>
+                                    
+                                    <!-- Sub-task: User Authentication System -->
+                                    <tr class="sub-task">
+                                        <td class="task-name">
+                                            <div class="task-indent-1">
+                                                <span class="task-icon">🔐</span>
+                                                User Authentication System
+                                            </div>
+                                        </td>
+                                        <td class="resource">Mike Johnson</td>
+                                        <td class="timeline">Jun 20, 2024 → Jul 25, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">100%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-completed">✅ Complete</span>
+                                        </td>
+                                        <td class="duration">36 days</td>
+                                    </tr>
+                                    
+                                    <!-- Sub-task: Mobile App Frontend -->
+                                    <tr class="sub-task">
+                                        <td class="task-name">
+                                            <div class="task-indent-1">
+                                                <span class="task-icon">📱</span>
+                                                Mobile App Frontend
+                                            </div>
+                                        </td>
+                                        <td class="resource">Emma Wilson</td>
+                                        <td class="timeline">Jul 1, 2024 → Sep 15, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">60%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 60%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-behind">Behind</span>
+                                        </td>
+                                        <td class="duration">77 days</td>
+                                    </tr>
+                                    
+                                    <!-- Sub-task: Database Schema Design -->
+                                    <tr class="sub-task">
+                                        <td class="task-name">
+                                            <div class="task-indent-1">
+                                                <span class="task-icon">🗄️</span>
+                                                Database Schema Design
+                                            </div>
+                                        </td>
+                                        <td class="resource">Alex Rivera</td>
+                                        <td class="timeline">Jun 10, 2024 → Jun 30, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">0%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-overdue">Overdue</span>
+                                        </td>
+                                        <td class="duration">21 days</td>
+                                    </tr>
+                                    
+                                    <!-- Sub-task: Payment Integration -->
+                                    <tr class="sub-task">
+                                        <td class="task-name">
+                                            <div class="task-indent-1">
+                                                <span class="task-icon">💳</span>
+                                                Payment Integration
+                                            </div>
+                                        </td>
+                                        <td class="resource">David Kim</td>
+                                        <td class="timeline">Jul 15, 2024 → Aug 30, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">15%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 15%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-overdue">Overdue</span>
+                                        </td>
+                                        <td class="duration">47 days</td>
+                                    </tr>
+                                    
+                                    <!-- Phase: Testing & QA -->
+                                    <tr class="phase-row">
+                                        <td class="task-name">
+                                            <div class="task-indent-0">
+                                                <span class="phase-icon">🧪</span>
+                                                Testing & QA
+                                            </div>
+                                        </td>
+                                        <td class="resource">QA Team</td>
+                                        <td class="timeline">Aug 1, 2024 → Oct 15, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">25%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 25%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-behind">Behind</span>
+                                        </td>
+                                        <td class="duration">76 days</td>
+                                    </tr>
+                                    
+                                    <!-- Milestone: App Launch -->
+                                    <tr class="milestone-row">
+                                        <td class="task-name">
+                                            <div class="task-indent-0">
+                                                <span class="milestone-icon">🏆</span>
+                                                App Launch
+                                            </div>
+                                        </td>
+                                        <td class="resource">Marketing</td>
+                                        <td class="timeline">Dec 15, 2024 → Dec 15, 2024</td>
+                                        <td class="progress">
+                                            <div class="progress-cell">
+                                                <span class="progress-text">0%</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-badge status-notstarted">Not Started</span>
+                                        </td>
+                                        <td class="duration">1 day</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roadmap Visualization -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Launch Roadmap</h3>
+                    <div class="roadmap-container">
+                        <!-- Project Header -->
+                        <div class="roadmap-header">
+                            <div class="roadmap-project-info">
+                                <h4 class="roadmap-project-title">🚀 OneCrew Mobile App Launch</h4>
+                                <div class="roadmap-project-meta">
+                                    <span class="roadmap-timeline">Mar 1, 2024 → Dec 15, 2024</span>
+                                    <span class="roadmap-duration">9 months</span>
+                                </div>
+                            </div>
+                            <div class="roadmap-progress-overview">
+                                <div class="roadmap-progress-circle">
+                                    <svg class="progress-ring" width="80" height="80">
+                                        <circle class="progress-ring-bg" cx="40" cy="40" r="32" stroke-width="4"></circle>
+                                        <circle class="progress-ring-fill" cx="40" cy="40" r="32" stroke-width="4" 
+                                                stroke-dasharray="201" stroke-dashoffset="80"></circle>
+                                    </svg>
+                                    <div class="progress-text">58%</div>
+                                </div>
+                                <div class="progress-label">Complete</div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Timeline -->
+                        <div class="journey-path">
+                            <div class="timeline-container">
+                                <div class="timeline-line">
+                                    <div class="timeline-progress" style="width: 58%;"></div>
+                                </div>
+                                
+                                <div class="timeline-items">
+                                    <div class="timeline-item completed">
+                                        <div class="timeline-marker" title="Completed">🚀</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-label">Kickoff</div>
+                                            <div class="timeline-date">Mar 1</div>
+                                            <div class="timeline-progress-text">100%</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item completed">
+                                        <div class="timeline-marker" title="Completed">🔍</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-label">Discovery</div>
+                                            <div class="timeline-date">Apr 15</div>
+                                            <div class="timeline-progress-text">100%</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item completed">
+                                        <div class="timeline-marker" title="Completed">🎨</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-label">Design</div>
+                                            <div class="timeline-date">Jun 10</div>
+                                            <div class="timeline-progress-text">100%</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item in-progress">
+                                        <div class="timeline-marker" title="In Progress">💻</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-label">Development</div>
+                                            <div class="timeline-date">Sep 30</div>
+                                            <div class="timeline-progress-text">75%</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item overdue">
+                                        <div class="timeline-marker" title="Overdue">🧪</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-label">Testing</div>
+                                            <div class="timeline-date">Oct 15</div>
+                                            <div class="timeline-progress-text">25%</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker" title="Not Started">📱</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-label">Launch</div>
+                                            <div class="timeline-date">Dec 15</div>
+                                            <div class="timeline-progress-text">0%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simple Road Trip Map -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Road Trip Map</h3>
+                    <div class="map-roadmap-container">
+                        <div class="map-header">
+                            <div class="map-title">🚀 OneCrew Launch Expedition</div>
+                            <div class="map-legend">
+                                <div class="legend-item">
+                                    <span class="legend-icon">🚩</span>
+                                    <span>Complete</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-icon">⏰</span>
+                                    <span>Behind</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-icon">⚠️</span>
+                                    <span>Overdue</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-icon">⏳</span>
+                                    <span>In Progress</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="map-journey">
+                            <div class="roadtrip-map">
+                                <svg class="route-path" viewBox="0 0 800 120" preserveAspectRatio="none">
+                                    <path class="route-line" d="M50,60 Q200,30 350,60 T650,60 L750,60" stroke="#94a3b8" stroke-width="2" fill="none" stroke-dasharray="6,6"/>
+                                    <path class="route-progress" d="M50,60 Q200,30 350,60 T500,60" stroke="#22c55e" stroke-width="3" fill="none" stroke-dasharray="6,6"/>
+                                </svg>
+                                
+                                <div class="map-stop" style="left: 50px; top: 30px;">
+                                    <div class="stop-marker complete">🚩</div>
+                                    <div class="stop-label">Discovery</div>
+                                </div>
+                                
+                                <div class="map-stop" style="left: 200px; top: 0px;">
+                                    <div class="stop-marker behind">⏰</div>
+                                    <div class="stop-label">Planning</div>
+                                </div>
+                                
+                                <div class="map-stop" style="left: 350px; top: 30px;">
+                                    <div class="stop-marker overdue">⚠️</div>
+                                    <div class="stop-label">Development</div>
+                                </div>
+                                
+                                <div class="map-stop" style="left: 500px; top: 30px;">
+                                    <div class="stop-marker in-progress">⏳</div>
+                                    <div class="stop-label">Testing</div>
+                                </div>
+                                
+                                <div class="map-stop" style="left: 650px; top: 30px;">
+                                    <div class="stop-marker not-started">⏳</div>
+                                    <div class="stop-label">Launch</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gantt Chart -->
+                <div class="section">
+                    <h3 class="h4 mb-6">Gantt Chart</h3>
+                    <div class="gantt-container">
+                        <div class="gantt-header">
+                            <div class="gantt-timeline">
+                                <div class="gantt-timeline-header">
+                                    <div class="gantt-task-column">Task</div>
+                                    <div class="gantt-timeline-months">
+                                        <div class="gantt-month">Jun</div>
+                                        <div class="gantt-month">Jul</div>
+                                        <div class="gantt-month">Aug</div>
+                                        <div class="gantt-month">Sep</div>
+                                        <div class="gantt-month">Oct</div>
+                                        <div class="gantt-month">Nov</div>
+                                        <div class="gantt-month">Dec</div>
+                                        <div class="gantt-month">Jan</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gantt-body">
+                            <!-- DevOps -->
+                            <div class="gantt-row">
+                                <div class="gantt-task-name">DevOps</div>
+                                <div class="gantt-timeline-bar">
+                                    <div class="gantt-bar completed" style="left: 0%; width: 20%;">
+                                        <span class="gantt-bar-label">DevOps</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Feature Design and Development -->
+                            <div class="gantt-row">
+                                <div class="gantt-task-name">Feature Design & Development</div>
+                                <div class="gantt-timeline-bar">
+                                    <div class="gantt-bar in-progress" style="left: 5%; width: 35%;">
+                                        <span class="gantt-bar-label">Feature Design</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Baby Playbook Home Screen -->
+                            <div class="gantt-row sub-task">
+                                <div class="gantt-task-name">Baby Playbook Home Screen</div>
+                                <div class="gantt-timeline-bar">
+                                    <div class="gantt-bar in-progress" style="left: 5%; width: 25%;">
+                                        <span class="gantt-bar-label">Baby Playbook</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Landing Page Home Screen -->
+                            <div class="gantt-row sub-task">
+                                <div class="gantt-task-name">Landing Page Home Screen</div>
+                                <div class="gantt-timeline-bar">
+                                    <div class="gantt-bar in-progress" style="left: 10%; width: 30%;">
+                                        <span class="gantt-bar-label">Landing Page</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Onboarding -->
+                            <div class="gantt-row">
+                                <div class="gantt-task-name">Onboarding</div>
+                                <div class="gantt-timeline-bar">
+                                    <div class="gantt-bar not-started" style="left: 25%; width: 15%;">
+                                        <span class="gantt-bar-label">Onboarding</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Profile Settings -->
+                            <div class="gantt-row">
+                                <div class="gantt-task-name">Profile Settings</div>
+                                <div class="gantt-timeline-bar">
+                                    <div class="gantt-bar behind" style="left: 15%; width: 25%;">
+                                        <span class="gantt-bar-label">Profile Settings</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Login Page -->
+                            <div class="gantt-row">
+                                <div class="gantt-task-name">Login Page</div>
+                                <div class="gantt-timeline-bar">
+                                    <div class="gantt-bar overdue" style="left: 20%; width: 10%;">
+                                        <span class="gantt-bar-label">Login Page</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Milestone -->
+                            <div class="gantt-row milestone">
+                                <div class="gantt-task-name">MVP Launch</div>
+                                <div class="gantt-timeline-bar">
+                                    <div class="gantt-milestone" style="left: 85%;">
+                                        <span class="gantt-milestone-icon">🎯</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
